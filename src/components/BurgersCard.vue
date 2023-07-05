@@ -1,22 +1,27 @@
 <template>
     <n-card>
-      <n-image :src="picture" alt="Imagem do produto" width="200" height="200" />
+      <n-image :src="getImageUrl(props.picture)" alt="Imagem do produto´" width="200" height="200" />
       <div class="burger-info">
-        <div class="burger-name">{{ name }}</div>
-        <div class="burger-ingredient">{{ ingredients }}</div>
-        <div class="burger-description">{{ description }}</div>
-        <div class="burger-instructions">{{ instructions }}</div>
+        <div class="burger-name">{{ props.name }}</div>
+        <div class="burger-ingredient">{{ props.ingredients }}</div>
+        <div class="burger-description">{{ props.description }}</div>
+        <div class="burger-instructions">{{ props.instructions }}</div>
       </div>
     </n-card>
   </template>
   
   
     <script lang="ts" setup>
-  import {defineProps}  from "vue";
+  // import {defineProps}  from "vue";
   
   import { NCard, NImage } from "naive-ui";
   
-  defineProps(["name", "ingredients", "description", "instructions", "picture"]);
+  const props = defineProps(["name", "ingredients", "description", "instructions", "picture"]);
+  // const props = defineProps({name: String, ingredients:String, description: String, instructions: String, picture: String});
+
+  const getImageUrl = (adress: string) => {
+        return new URL(`../assets/burgers/${adress}`, import.meta.url).href
+    };
   </script>
   
   <style scoped>
