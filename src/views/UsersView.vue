@@ -29,68 +29,68 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
-import { ref } from 'vue';
-import NavBar from '../components/NavBar.vue';
+import axios from 'axios'
+import { ref } from 'vue'
+import NavBar from '../components/NavBar.vue'
 
 const burger = ref({
   name: '',
   picture: '',
   instructions: '',
   ingredients: '',
-  description: '',
-});
+  description: ''
+})
 
-let selectedFile = null;
+let selectedFile = null
 
 function handleFileChange(event) {
-  selectedFile = event.target.files[0];
+  selectedFile = event.target.files[0]
 }
 
 async function handleSubmit(event) {
-  event.preventDefault();
+  event.preventDefault()
 
   // Upload the selected file to http://localhost:8080/upload
   if (selectedFile) {
-    const pictureFormData = new FormData();
-    pictureFormData.append('file', selectedFile);
+    const pictureFormData = new FormData()
+    pictureFormData.append('file', selectedFile)
 
     try {
       await axios.post('http://localhost:8080/upload', pictureFormData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+          'Content-Type': 'multipart/form-data'
+        }
+      })
     } catch (error) {
-      alert('Error uploading picture');
-      console.log(error);
+      alert('Error uploading picture')
+      console.log(error)
     }
   }
 
   // Create a new FormData object
-  const formData = new FormData();
+  const formData = new FormData()
 
   // Add form fields to the FormData object
-  formData.append('name', burger.value.name);
+  formData.append('name', burger.value.name)
   formData.append('picture', selectedFile.name)
-  formData.append('instructions', burger.value.instructions);
-  formData.append('ingredients', burger.value.ingredients);
-  formData.append('description', burger.value.description);
+  formData.append('instructions', burger.value.instructions)
+  formData.append('ingredients', burger.value.ingredients)
+  formData.append('description', burger.value.description)
 
   // Upload the form data to http://localhost:8080/upload/upload-items
   try {
     const response = await axios.post('http://localhost:8080/upload/upload-items', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+        'Content-Type': 'multipart/form-data'
+      }
+    })
 
     // Assuming the API response contains the filename of the saved picture
-    burger.value.picture = response.data.filename;
-    alert('Form submitted successfully');
+    burger.value.picture = response.data.filename
+    alert('Form submitted successfully')
   } catch (error) {
-    console.log(error);
-    alert('Error submitting form');
+    console.log(error)
+    alert('Error submitting form')
   }
 
   // Reset the form
@@ -99,46 +99,45 @@ async function handleSubmit(event) {
     picture: '',
     instructions: '',
     ingredients: '',
-    description: '',
-  };
+    description: ''
+  }
 
-  selectedFile = null;
+  selectedFile = null
 }
 </script>
-  
-  <style scoped>
-  .form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .form-group {
-    margin-bottom: 10px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  input[type='text'],
-  textarea {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button[type='submit'] {
-    padding: 10px 20px;
-    background-color: #4285f4;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  </style>
-  
+
+<style scoped>
+.form-container {
+  max-width: 400px;
+  margin: 30px auto 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type='text'],
+textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type='submit'] {
+  padding: 10px 20px;
+  background-color: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>

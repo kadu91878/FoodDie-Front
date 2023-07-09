@@ -18,9 +18,11 @@ import { NCard, NImage } from 'naive-ui'
 const props = defineProps(['name', 'ingredients', 'description', 'instructions', 'picture'])
 // const props = defineProps({name: String, ingredients:String, description: String, instructions: String, picture: String});
 
-const getImageUrl = (adress: string) => {
-  return new URL(`../assets/burgers/${adress}`, import.meta.url).href
+const getImageUrl = (imageName: string) => {
+  // Replace 'http://localhost:8080' with your actual API URL
+  return `http://localhost:8080/burgers/images/${imageName}`
 }
+
 </script>
 
 <style scoped>

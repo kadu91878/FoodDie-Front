@@ -134,6 +134,7 @@ function handleSearch(){
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  padding: 3%;
 }
 
 input[type='text'] {
@@ -141,6 +142,7 @@ input[type='text'] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 
 .search-button {
   background-color: red;

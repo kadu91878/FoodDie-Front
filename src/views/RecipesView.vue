@@ -75,6 +75,8 @@ function filterBurgers(search: any) {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #e8f07a; /* Add a background color for the container */
+  padding: 20px; /* Add some padding around the container */
 }
 
 .search-bar {
@@ -87,7 +89,7 @@ function filterBurgers(search: any) {
 .burger-container {
   display: flex;
   flex-direction: column;
-  margin-left: 5%;
+  margin-left: 0.5%;
 }
 
 .search-button{
