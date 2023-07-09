@@ -74,7 +74,6 @@ function filterBurgers(search: any) {
 .search-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
@@ -87,7 +86,8 @@ function filterBurgers(search: any) {
 
 .burger-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  margin-left: 5%;
 }
 
 .search-button{
